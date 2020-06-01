@@ -1,6 +1,6 @@
 #!/bin/bash
 #
-# Bandwith test, using speedtest-cli or ookla speedtest CLI
+# Bandwith test, using sivel/speedtest-cli or ookla speedtest CLI
 #
 # <bitbar.title>Bandwith test, using speedtest-cli or ookla speedtest CLI</bitbar.title>
 # <bitbar.version>v1.0</bitbar.version>
