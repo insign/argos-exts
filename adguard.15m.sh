@@ -13,7 +13,7 @@ check_show() {
     echo $1
     echo "---"
     echo $2
-    return 0
+    exit
   fi
 }
 
