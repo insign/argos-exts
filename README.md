@@ -15,7 +15,7 @@ Shows your external IPv4 and IPv6. Click to copy but Needs <a href="https://gith
 </p>
 
 ## Speedtest
-Shows your connection speed. Needs <a href="https://www.speedtest.net/apps/cli">ookla speedtest</a> (recommended) or <a href="https://github.com/sivel/speedtest-cli">sivel/speedtest-cli</a>. Always need <a href="https://stedolan.github.io/jq/">jq</a> installed. 
+Shows your connection speed. Needs <a href="https://www.speedtest.net/apps/cli">ookla speedtest</a> (recommended) or <a href="https://github.com/sivel/speedtest-cli">sivel/speedtest-cli</a>. Always need <a href="https://stedolan.github.io/jq/">jq</a>, install via your <a href="https://en.wikipedia.org/wiki/List_of_software_package_management_systems#Unix-like">pm</a>. 
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/insign/argos-exts/.github/speedtest.png">
 </p>
