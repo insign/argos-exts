@@ -1,5 +1,5 @@
 # argos-exts
-Some great extensions for Argos/BitBar
+Some great extensions for <a href="https://github.com/p-e-w/argos">Argos</a>/<a href="https://github.com/matryer/bitbar">BitBar</a>
 
 ## AdGuard
 
