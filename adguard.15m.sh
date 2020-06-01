@@ -31,3 +31,7 @@ check_show 'DNS' 'AdGuard No-Filter DNS' 'https://1590966205388-dns-unfiltered-d
 check_show 'DoT NF' 'AdGuard No-Filter <b>DNS-over-TLS</b>' 'https://1590966205389-doh-unfiltered-dnscheck.adguard.com/info.json'
 check_show 'DoH NF' 'AdGuard No-Filter <b>DNS-over-HTTPS</b>' 'https://1590966205390-dot-unfiltered-dnscheck.adguard.com/info.json'
 check_show 'DNSC NF' 'AdGuard No-Filter <b>DNSCrypt</b>' 'https://1590966205392-dnscrypt-unfiltered-dnscheck.adguard.com/info.json'
+
+check_show 'none' 'Looks your are using another DNS service' 'https://example.com'
+
+echo 'unknown'
