@@ -17,8 +17,9 @@ else
 	EXTERNAL_IPv6=$(curl ipv6.icanhazip.com)
 fi
 
-echo "$EXTERNAL_IPv4"
+echo "$EXTERNAL_IPv4 | dropdown=true refresh=true"
 echo "---"
 echo "$EXTERNAL_IPv4 | terminal=false bash='$0' param1=copy param2=$EXTERNAL_IPv4"
 echo "$EXTERNAL_IPv6 | terminal=false bash='$0' param1=copy param2=$EXTERNAL_IPv6"
+echo "Refresh | refresh=true"
 
