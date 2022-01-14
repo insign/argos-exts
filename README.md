@@ -22,3 +22,6 @@ Shows your connection speed. Needs <a href="https://www.speedtest.net/apps/cli">
 
 > In the beginning of the code you can change as you prefer or leave empty/commented to TRY get the nearest server (many times buggy)
 `SERVER_ID=10843 # currently works better with ookla speedtest cli`
+
+## License
+[Do What the Fuck You Want to Public License](LICENSE.md)
