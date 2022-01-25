@@ -1,11 +1,15 @@
 # argos-exts
 Some great extensions for <a href="https://github.com/p-e-w/argos">Argos</a>/<a href="https://github.com/matryer/bitbar">BitBar</a>
 
-## AdGuard
+## Connection
 
-Shows if you are using some <a href="https://adguard.com/en/adguard-dns/overview.html#setup-guide">AdGuard DNS</a>, adblock, family or unfiltered via just DNS, DNS-over-TLS, DNS-over-HTTPS or DNSCrypt.
+Shows if you are using some special DNS or VPN:
+
+ - <a href="https://adguard.com/en/adguard-dns/overview.html#setup-guide">AdGuard DNS</a>, adblock, family or unfiltered via just DNS, DNS-over-TLS, DNS-over-HTTPS or DNSCrypt.
+ - <a href="https://1.1.1.1">Cloudflare 1⁴</a> DNS or WARP VPN.
 <p align="center">
   <img src="https://cdn.jsdelivr.net/gh/insign/argos-exts/.github/adguard.png">
+  <img src="https://cdn.jsdelivr.net/gh/insign/argos-exts/.github/cf.png">
 </p>
 
 ## External IP
