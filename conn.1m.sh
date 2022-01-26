@@ -6,7 +6,7 @@
 # <bitbar.version>1.0</bitbar.version>
 #
 
-from_cloudflare_trace() {
+from_cloudflare_warp() {
 	# shellcheck disable=SC1090
 	source <(curl -s https://1.1.1.1/cdn-cgi/trace | sed -e 's/^/local /')
 
@@ -39,15 +39,12 @@ from_head() {
     exit
   fi
 }
-from_cloudflare_trace
+
+from_cloudflare_warp
 
 from_head_with_body '1⁴' 'Cloudflare 1⁴ DNS <b>DoT</b>' 'https://is-dot.help.every1dns.net/resolvertest'
 from_head_with_body '1⁴' 'Cloudflare 1⁴ DNS <b>DoH</b>' 'https://is-doh.help.every1dns.net/resolvertest'
-from_head_with_body '1⁴ IPv6' 'Cloudflare 1⁴ DNS <b>IPv6</b>' 'https://ipv6a.cloudflare-dns.com/resolvertest'
-from_head_with_body '1⁴ IPv6' 'Cloudflare 1⁴ DNS <b>IPv6</b>' 'https://ipv6b.cloudflare-dns.com/resolvertest'
 from_head_with_body '1⁴' 'Cloudflare 1⁴ DNS <b>Standard</b>' 'https://is-cf.help.every1dns.net/resolvertest'
-from_head_with_body '1⁴' 'Cloudflare 1⁴ DNS <b>Standard</b>' 'https://1.1.1.1/resolvertest'
-from_head_with_body '1⁴' 'Cloudflare 1⁴ DNS <b>Standard</b>' 'https://1.0.0.1/resolvertest'
 
 from_head 'AdGuard' 'AdGuard DNS <b>Standard</b>' 'https://1590966205380-dns-standard-dnscheck.adguard.com/info.json'
 from_head 'DoT' 'AdGuard <b>DNS-over-TLS</b>' 'https://1588629318930-dot-standard-dnscheck.adguard.com/info.json'
@@ -64,6 +61,6 @@ from_head 'DoT NF' 'AdGuard No-Filter <b>DNS-over-TLS</b>' 'https://159096620538
 from_head 'DoH NF' 'AdGuard No-Filter <b>DNS-over-HTTPS</b>' 'https://1590966205390-dot-unfiltered-dnscheck.adguard.com/info.json'
 from_head 'DNSC NF' 'AdGuard No-Filter <b>DNSCrypt</b>' 'https://1590966205392-dnscrypt-unfiltered-dnscheck.adguard.com/info.json'
 
-from_head 'none' 'Looks your are using another DNS service' 'https://example.com'
+from_head "none" 'Looks your are using another DNS service' 'https://example.com'
 
 echo 'unknown'
