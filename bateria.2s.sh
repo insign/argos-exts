@@ -55,21 +55,55 @@ mains="$(get_mains_sysfs)"
 online=""
 [ -n "$mains" ] && [ -f "$mains/online" ] && online="$(cat "$mains/online" 2>/dev/null)"
 
-# Ícone e cor
-icon="🔋"; [ "$state" = "charging" ] && icon="⚡"
+# Determinar ícone baseado no nível e estado
+get_battery_icon() {
+  local pct="$1"
+  local st="$2"
+
+  # Arredondar para múltiplos de 10
+  local level=$((pct / 10 * 10))
+  [ "$level" -gt 100 ] && level=100
+  [ "$level" -lt 0 ] && level=0
+
+  # Determinar sufixo baseado no estado
+  local suffix=""
+  if [ "$st" = "charging" ]; then
+    suffix="-charging"
+  elif [ "$st" = "fully-charged" ] || [ "$st" = "charged" ]; then
+    suffix="-charged"
+  fi
+
+  # Casos especiais
+  if [ "$pct" -eq 100 ] && [ "$st" = "fully-charged" ]; then
+    echo "battery-level-100-charged-symbolic"
+  elif [ "$pct" -le 5 ]; then
+    echo "battery-level-0${suffix}-symbolic"
+  else
+    echo "battery-level-${level}${suffix}-symbolic"
+  fi
+}
+
+# Obter ícone apropriado
+icon_name=$(get_battery_icon "${percent:-50}" "$state")
+
+# Determinar cor
 if [ "$state" = "discharging" ]; then
-  if [ -n "$percent" ] && [ "$percent" -lt 20 ]; then color="color=#ff5555"; else color="color=#f8f8f2"; fi
+  if [ -n "$percent" ] && [ "$percent" -lt 20 ]; then
+    color="color=#ff5555"
+  else
+    color="color=#f8f8f2"
+  fi
 else
   color="color=#8be9fd"
 fi
 
 # Linha do painel
 if [ -n "$p_sysfs" ]; then
-  echo "$icon ${p_sysfs}W ${percent}% | $color"
+  echo "${p_sysfs}W ${percent}% | iconName=$icon_name $color"
 elif [ -n "$erate" ]; then
-  echo "$icon ${erate}W ${percent}% | $color"
+  echo "${erate}W ${percent}% | iconName=$icon_name $color"
 else
-  echo "$icon ${percent}% | $color"
+  echo "${percent}% | iconName=$icon_name $color"
 fi
 
 # Menu
