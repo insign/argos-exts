@@ -1,5 +1,15 @@
 #!/usr/bin/env bash
-# bater ia.2s.sh — Argos: atualiza a cada 2 segundos
+# bateria.2s.sh — Argos: atualiza a cada 2 segundos
+#
+# Para ocultar o indicador nativo de bateria do GNOME e usar apenas este:
+# gsettings set org.gnome.desktop.interface show-battery-percentage false
+#
+# Para ocultar completamente o ícone nativo (requer extensão):
+# 1. Instale a extensão "Just Perfection"
+# 2. Ou use: gsettings set org.gnome.shell.extensions.power-icon hide true
+#
+# Para reverter (mostrar ícone nativo novamente):
+# gsettings set org.gnome.desktop.interface show-battery-percentage true
 
 # Não falhar em campos ausentes
 set -u
@@ -98,7 +108,10 @@ else
 fi
 
 # Linha do painel
-if [ -n "$p_sysfs" ]; then
+# Não mostrar W quando totalmente carregado (potência ~0)
+if [ "$state" = "fully-charged" ] || ([ "$percent" -eq 100 ] && [ "$state" = "charging" ]); then
+  echo "${percent}% | iconName=$icon_name $color"
+elif [ -n "$p_sysfs" ]; then
   echo "${p_sysfs}W ${percent}% | iconName=$icon_name $color"
 elif [ -n "$erate" ]; then
   echo "${erate}W ${percent}% | iconName=$icon_name $color"
