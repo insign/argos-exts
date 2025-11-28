@@ -55,10 +55,10 @@ elif [ "$1" = "run" ]; then
 else
         # Check if test is currently running
         if [ -f "$LOCK_FILE" ]; then
-                echo "⏳ Testing... | iconName=emblem-synchronizing-symbolic"
+                echo "Testing... | iconName=content-loading-symbolic"
                 echo "---"
                 echo "Running speedtest..."
-                echo "Please wait | iconName=emblem-synchronizing-symbolic"
+                echo "Please wait | iconName=content-loading-symbolic"
                 exit 0
         fi
 
@@ -77,10 +77,10 @@ else
         else
                 # No cache, run test in background and show loading
                 run_speedtest &
-                echo "⏳ Testing... | iconName=emblem-synchronizing-symbolic refresh=true"
+                echo "Testing... | iconName=content-loading-symbolic refresh=true"
                 echo "---"
                 echo "Running first speedtest..."
-                echo "This may take a few seconds | iconName=emblem-synchronizing-symbolic"
+                echo "This may take a few seconds | iconName=content-loading-symbolic"
                 echo "Test again | refresh=true"
                 exit 0
         fi
