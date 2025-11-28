@@ -13,8 +13,8 @@ if [ "$1" = "copy" ]; then
   echo -n "$2" | xclip -selection clipboard
   $(which notify-send) 'Copied!' 'Sent to clipboard'
 else
-	EXTERNAL_IPv4=$(curl ipv4.icanhazip.com)
-	EXTERNAL_IPv6=$(curl ipv6.icanhazip.com)
+	EXTERNAL_IPv4=$(curl -s -m 4 -4 icanhazip.com)
+	EXTERNAL_IPv6=$(curl -s -m 4 -6 icanhazip.com)
 fi
 
 echo "$EXTERNAL_IPv4 | dropdown=true refresh=true"
