@@ -31,7 +31,7 @@ from_nextdns() {
 	# deviceName=$(jq '.deviceName' <<<"$json")
 	if [[ "$status" == '"ok"' ]]; then
 		foundStatus=1
-		titles+=("NextDNS")
+		titles+=(" | iconName=security-high-symbolic | color=#007BFF")
 		subtitles+=("NextDNS\t\t${protocol//\"/} | href=https://my.nextdns.io")
 	fi
 }
