@@ -26,12 +26,13 @@ if [ "$1" = "share" ]; then
         $(which notify-send) 'Copied!' 'Sent to clipboard'
 else
         if [[ -x "$(command -v speedtest++)" ]]; then
-                OUTPUT=$($(command -v "speedtest++") --output json ${SERVER_ID:+--test-server=$SERVER_ID})
+                OUTPUT=$($(command -v "speedtest++") --output json --share ${SERVER_ID:+--test-server=$SERVER_ID})
                 DOWNLOAD=$(jq -r '.download' <<<"$OUTPUT" | awk '{printf "%.2f", $1 / 1e+6}')
                 UPLOAD=$(jq -r '.upload' <<<"$OUTPUT" | awk '{printf "%.2f", $1 / 1e+6}')
                 PING=$(jq -r '.ping' <<<"$OUTPUT")
                 IP=$(jq -r '.client.ip' <<<"$OUTPUT")
                 ISP=$(jq -r '.client.isp' <<<"$OUTPUT")
+                SHARE=$(jq -r '.share' <<<"$OUTPUT")
                 SERVER=$(jq '.server | .name + ", " + .sponsor' -r <<<"$OUTPUT")
                 MAP=$(jq -r '.server | .name + ", " + .sponsor' <<<"$OUTPUT" | jq -sRr @uri)
 
@@ -42,6 +43,8 @@ else
                 echo "\t\t${UPLOAD%%.*} Mbps\t<i>upload</i>"
                 echo "\t\t${PING%%.*} ms\t\t<i>ping</i>"
                 echo "$SERVER | href=https://google.com/maps?q=$MAP"
+                echo "Share result | terminal=false bash='$0' param1=share param2=$SHARE"
+                echo "Open result | href=$SHARE"
                 echo "Test again | refresh=true"
         elif [[ -x "$(command -v speedtest-cli)" ]]; then
                 OUTPUT=$($(command -v "speedtest-cli") --json --share ${SERVER_ID:+--server=$SERVER_ID})
