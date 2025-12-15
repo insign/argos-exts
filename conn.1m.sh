@@ -18,7 +18,7 @@ from_cf_warp() {
 	# shellcheck disable=SC2154
 	if [[ "$warp" == 'on' ]]; then
 		foundStatus=true
-		titles+=('WARP')
+		titles+=(' | iconName=weather-overcast-symbolic | color=#F48120')
 
 		subtitles+=("<b>WARP</b> VPN\t\t<u>$colo</u> | href=https://google.com/maps?q=$colo+airport")
 	fi
@@ -54,7 +54,30 @@ from_adguard() {
 	fi
 }
 
+from_tailscale() {
+	if command -v tailscale &>/dev/null; then
+		json=$(tailscale status --json 2>/dev/null)
+		if [[ -n "$json" ]]; then
+			state=$(jq -r '.BackendState' <<<"$json")
+			if [[ "$state" == "Running" ]]; then
+				foundStatus=1
+				relay=$(jq -r '.Self.Relay // "direct"' <<<"$json")
+				hostname=$(jq -r '.Self.HostName' <<<"$json")
+				tailscale_ip=$(jq -r '.TailscaleIPs[0] // ""' <<<"$json")
+				
+				titles+=(" | iconName=web-browser-symbolic | color=#00B4D8")
+				subtitles+=("<b>Tailscale</b>\\t\\t<u>$relay</u> ($hostname) | href=https://login.tailscale.com/admin/machines")
+				if [[ -n "$tailscale_ip" ]]; then
+					subtitles+=("IP: $tailscale_ip | terminal=false bash=-c 'echo -n $tailscale_ip | xclip -selection clipboard'")
+				fi
+			fi
+		fi
+	fi
+}
+
 from_cf_warp
+
+from_tailscale
 
 from_nextdns
 
